@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# emacs
+*~
+
+# private content
+cogs/private_config.py
