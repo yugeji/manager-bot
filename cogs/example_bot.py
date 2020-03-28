@@ -1,6 +1,7 @@
 import discord
 from private_config import token
 from utils import logic
+import os
 
 client = discord.Client()
 
@@ -22,4 +23,4 @@ async def on_message(message):
     logic(message)
 
 
-client.run(token)
+client.run(os.environ['TOKEN'])

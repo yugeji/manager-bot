@@ -1,1 +1,1 @@
-worker: python cogs/example_bot.py
+worker: python3 cogs/example_bot.py
