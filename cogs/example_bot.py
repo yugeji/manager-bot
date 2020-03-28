@@ -1,6 +1,4 @@
 import discord
-from private_config import token
-from utils import logic
 import os
 
 client = discord.Client()
@@ -20,7 +18,4 @@ async def on_message(message):
     if message.content.startswith('f'):
         await message.channel.send('f u too')
 
-    logic(message)
-
-
-client.run(os.environ['TOKEN'])
+client.run(str(os.environ.get('TOKEN')))
