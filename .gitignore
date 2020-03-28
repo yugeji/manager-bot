@@ -133,3 +133,4 @@ dmypy.json
 
 # private content
 cogs/private_config.py
+cogs/LICENSE
