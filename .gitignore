@@ -133,3 +133,6 @@ dmypy.json
 
 # private content
 cogs/private_config.py
+
+# MacOS
+*.DS_Store
