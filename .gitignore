@@ -136,3 +136,5 @@ cogs/private_config.py
 
 # MacOS
 *.DS_Store
+
+cogs/LICENSE
