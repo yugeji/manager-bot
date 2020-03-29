@@ -6,7 +6,8 @@ class ManagerSan():
         self.projects = {}
 
     def new_project(self, name): 
-        self.projects[name] = Project(name)
+        if name not in self.projects: 
+            self.projects[name] = Project(name)
 
     def add_assignment(self, project_name, task, user): 
         project = self.get_project(project_name)
