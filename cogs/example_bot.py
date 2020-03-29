@@ -5,8 +5,8 @@ from discord.ext import commands
 
 from ManagerSan import *
 
-bot = discord.Client()
-#bot = commands.Bot(command_prefix='uwu')
+client = discord.Client()
+bot = commands.Bot(command_prefix='uwu')
 
 manager = ManagerSan()
 
@@ -62,6 +62,6 @@ async def on_message(message):
 
     # logic(message)
     
-client.run(str(os.environ.get('TOKEN')))
+#client.run(str(os.environ.get('TOKEN')))
 
-# bot.run(str(os.environ.get('TOKEN')))
+bot.run(str(os.environ.get('TOKEN')))
