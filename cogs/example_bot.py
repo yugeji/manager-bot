@@ -25,6 +25,8 @@ manager = ManagerSan()
 #     if message.content.startswith('f'):
 #         await message.channel.send('f u too')
 
+uri = "mongodb://heroku_q8wzjd90:kp6usdbitu31j396ctp80n6ngr@ds039037.mlab.com:39037/heroku_q8wzjd90"
+
 #     logic(message)
 
 @bot.event
@@ -60,6 +62,6 @@ async def on_message(message):
 
     # logic(message)
     
-# client.run(str(os.environ.get('TOKEN')))
+client.run(str(os.environ.get('TOKEN')))
 
-bot.run(str(os.environ.get('TOKEN')))
+# bot.run(str(os.environ.get('TOKEN')))
