@@ -2,6 +2,7 @@ import discord
 import os
 from discord.ext.commands import Bot
 from discord.ext import commands
+from private_config import token
 
 from ManagerSan import *
 
@@ -62,4 +63,5 @@ async def on_message(message):
     
 # client.run(str(os.environ.get('TOKEN')))
 
-bot.run(str(os.environ.get('TOKEN')))
+#bot.run(str(os.environ.get('TOKEN')))
+bot.run(token)
