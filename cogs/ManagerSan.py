@@ -1,9 +1,10 @@
 from Project import *
 from discord.ext import commands
 
-class ManagerSan(): 
+class ManagerSan(bot): 
     def __init__(self): 
         self.projects = {}
+        self.bot = bot
 
     def new_project(self, name): 
         if name not in self.projects: 
@@ -33,7 +34,7 @@ class ManagerSan():
     def process(self, args): 
         cmd = args[0]
         if cmd == 'complete': 
-            project_name, chapter, task = args[1:] 
+            project_name, task, chapter = args[1:] 
 
             self.update_chapter_status(project_name, task, chapter)
 
@@ -51,7 +52,6 @@ class ManagerSan():
             self.new_project(args[1])
 
         if cmd == 'print': 
-            return str(self)
             
     def __str__(self): 
         lines = []
