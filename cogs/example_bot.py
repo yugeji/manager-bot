@@ -35,6 +35,10 @@ async def on_ready():
     print(bot.user.id)
     print('Bot Is Online')
 
+    # if ManagerSan exists, read
+
+    # else create new ManagerSan
+
 @bot.event
 async def on_message(message): 
     if message.author == bot.user:
@@ -48,15 +52,14 @@ async def on_message(message):
         await message.channel.send('f u too')
         # await bot.send_message(message.channel, 'Hello!')
 
+    if message.content.startswith('ManagerSan'):
+        args = message.content.split(' ')[1:]
+        manager.process(args)
+
+        # update project statuses in appropriate  
+        await message.channel.send(str(manager))
+
     # logic(message)
     
-
-@bot.command(pass_context=True)
-async def project(ctx, project_name):
-    manager.new_project(project_name)
-
-    await ctx.message.channel.send('new project made!')
-    print('hello')
-
 
 bot.run(token)

@@ -2,13 +2,15 @@
 
 class Project():
     def __init__(self, name):
+        self.PM = "pm"
         self.RAWS = "raws"
-        self.TL = "ts"
+        self.TL = "tl"
+        self.PR = "pr"
         self.CLEAN = "cl"
-        self.RD = "rd"
         self.TS = "ts"
+        self.RD = "rd"
         self.QC = "qc"
-        self.ALL_TASKS = [self.RAWS, self.TL, self.CLEAN, self.RD, self.TS, self.QC]
+        self.ALL_TASKS = [self.PM, self.RAWS, self.TL, self.PR, self.CLEAN, self.TS, self.RD, self.QC]
 
         self.name = name
 
@@ -18,13 +20,16 @@ class Project():
 
         self.chapter_status = {} 
         for i in self.ALL_TASKS: 
-            self.assignments[i] = 0
+            self.chapter_status[i] = 0
         
     def add_assignment(self, task, user): 
         try: 
             self.assignments[task].append(user)
         except: 
             print(f"Not a valid task. Valid tasks include {', '.join(self.ALL_TASKS)[-2]}.")
+
+    def remove_assignment(self, task, user): 
+        raise NotImplementedError
 
     def update_chapter_status(self, task, chapter): 
         try: 
@@ -36,7 +41,8 @@ class Project():
         lines = [] 
         lines.append(f"Project: {self.name}")
         for task in self.ALL_TASKS: 
-            lines.append(f"  {task}: ch {self.chapter_status[task]}; ({', '.join(self.assignments[task])})")
+            if len(self.assignments[task]) != 0: 
+                lines.append(f"  {task}: ch {self.chapter_status[task]} complete ({', '.join(self.assignments[task])})")
 
         return "\n".join(lines)
         
