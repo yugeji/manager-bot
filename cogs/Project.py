@@ -36,7 +36,10 @@ class Project():
             print(f"Not a valid task. Valid tasks include {', '.join(self.ALL_TASKS)}")
 
     def remove_assignment(self, task, user): 
-        raise NotImplementedError
+        try: 
+            self.assignments[task].remove(user)
+        except:
+            print(f"{user} is not assigned to {task}.")
 
     def update_chapter_status(self, task, chapter): 
         try: 
