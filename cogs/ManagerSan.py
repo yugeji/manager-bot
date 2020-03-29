@@ -12,12 +12,14 @@ class ManagerSan():
         self.commands['unassign'] = self.remove_assignment
         self.commands['help'] = self.get_help
 
+        self.help_string = self.generate_help_string()
+
     def process(self, args): 
         cmd = args[0]
 
         if cmd not in self.commands:
-            res = "That's not a valid command!\n"
-            res += self.get_help()
+            res = f"'{cmd}' is not a valid command.\n"
+            res += self.help_string
             return res
 
         res = self.commands[cmd](*args[1:])
@@ -25,9 +27,9 @@ class ManagerSan():
         if cmd == 'help': 
             return res
         else:
-            return str(self)
+            return self.__str__()
 
-    def get_help(self):
+    def generate_help_string(self):
         lines = []
         lines.append("Commands:")
         lines.append("Note: Valid tasks include pm, raws, tl, pr, cl, ts, rd, and qc.")
@@ -35,6 +37,9 @@ class ManagerSan():
             if cmd != 'help': 
                 lines.append(f"  {self.commands[cmd].__doc__}")
         return "\n".join(lines)
+
+    def get_help(self):
+        return self.help_string
 
     def new_project(self, name): 
         '''add [project]'''
