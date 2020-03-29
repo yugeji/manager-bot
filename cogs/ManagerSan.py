@@ -1,10 +1,9 @@
 from Project import *
 from discord.ext import commands
 
-class ManagerSan(bot): 
+class ManagerSan(): 
     def __init__(self): 
         self.projects = {}
-        self.bot = bot
 
     def new_project(self, name): 
         if name not in self.projects: 
@@ -52,6 +51,7 @@ class ManagerSan(bot):
             self.new_project(args[1])
 
         if cmd == 'print': 
+            return str(self)
             
     def __str__(self): 
         lines = []
