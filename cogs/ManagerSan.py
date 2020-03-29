@@ -15,6 +15,11 @@ class ManagerSan():
     def process(self, args): 
         cmd = args[0]
 
+        if cmd not in self.commands:
+            res = "That's not a valid command!\n"
+            res += self.get_help()
+            return res
+
         res = self.commands[cmd](*args[1:])
 
         if cmd == 'help': 
