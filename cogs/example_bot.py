@@ -5,8 +5,8 @@ from discord.ext import commands
 
 from ManagerSan import *
 
-client = discord.Client()
-bot = commands.Bot(command_prefix='uwu')
+bot = discord.Client()
+#bot = commands.Bot(command_prefix='uwu')
 
 manager = ManagerSan()
 
