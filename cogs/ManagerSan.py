@@ -5,21 +5,51 @@ class ManagerSan():
     def __init__(self): 
         self.projects = {}
 
+        self.commands = {} 
+        self.commands['add'] = self.new_project
+        self.commands['complete'] = self.update_chapter_status
+        self.commands['assign'] = self.add_assignment
+        self.commands['unassign'] = self.remove_assignment
+        self.commands['help'] = self.get_help
+
+    def process(self, args): 
+        cmd = args[0]
+
+        res = self.commands[cmd](*args[1:])
+
+        if cmd == 'help': 
+            return res
+        else:
+            return str(self)
+
+    def get_help(self):
+        lines = []
+        lines.append("Commands:")
+        lines.append("Note: Valid tasks include pm, raws, tl, pr, cl, ts, rd, and qc.")
+        for cmd in sorted(self.commands):
+            if cmd != 'help': 
+                lines.append(f"  {self.commands[cmd].__doc__}")
+        return "\n".join(lines)
+
     def new_project(self, name): 
+        '''add [project]'''
         if name not in self.projects: 
             self.projects[name] = Project(name)
 
     def add_assignment(self, project_name, task, user): 
+        '''assign [project] [task] [person]'''
         project = self.get_project(project_name)
         
         project.add_assignment(task, user)
 
     def remove_assignment(self, project_name, task, user): 
+        '''unassign [project] [task] [person]'''
         project = self.get_project(project_name)
         
         project.remove_assignment(task, user)
 
     def update_chapter_status(self, project_name, task, chapter): 
+        '''complete [project] [task] [chapter]'''
         project = self.get_project(project_name)
         
         project.update_chapter_status(task, chapter)
@@ -29,29 +59,6 @@ class ManagerSan():
             return self.projects[project_name]
         except: 
             print(f"Project '{project_name}' does not exist!")
-
-    def process(self, args): 
-        cmd = args[0]
-        if cmd == 'complete': 
-            project_name, task, chapter = args[1:] 
-
-            self.update_chapter_status(project_name, task, chapter)
-
-        if cmd == 'assign': 
-            project_name, task, user = args[1:]
-
-            self.add_assignment(project_name, task, user)
-
-        if cmd == 'unassign':
-            project_name, task, user = args[1:]
-
-            self.remove_assignment(project_name, task, user)
-        
-        if cmd == 'add': 
-            self.new_project(args[1])
-
-        if cmd == 'print': 
-            return str(self)
             
     def __str__(self): 
         lines = []
